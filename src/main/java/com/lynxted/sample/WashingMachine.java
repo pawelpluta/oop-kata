@@ -1,38 +1,38 @@
 package com.lynxted.sample;
 
-import java.util.Collection;
+import java.math.BigDecimal;
 
 class WashingMachine {
 
-    private Integer temperature;
-    private Integer spinSpeed;
-    private Collection<LaundryElement> laundry;
+    private static final BigDecimal MAX_LAUNDRY_WEIGHT = BigDecimal.valueOf(7);
 
-    Integer getTemperature() {
-        return temperature;
+    private Programme programme;
+    private Laundry laundry;
+
+    void selectProgramme(Programme programme) {
+        this.programme = programme;
     }
 
-    void setTemperature(Integer temperature) {
-        this.temperature = temperature;
-    }
-
-    Integer getSpinSpeed() {
-        return spinSpeed;
-    }
-
-    void setSpinSpeed(Integer spinSpeed) {
-        this.spinSpeed = spinSpeed;
-    }
-
-    Collection<LaundryElement> getLaundry() {
+    Laundry takeOutLaundry() {
         return laundry;
     }
 
-    void setLaundry(Collection<LaundryElement> laundry) {
-        this.laundry = laundry;
+    Laundry addLaundry(Laundry newLaundryToBeDone) {
+        newLaundryToBeDone.asList()
+                          .forEach(nextLaundryElement -> {
+                              if (canFit(nextLaundryElement)) {
+                                  laundry = laundry.with(nextLaundryElement);
+                              }
+                          });
+        return newLaundryToBeDone.withOut(laundry);
     }
 
-    void wash() {
-        laundry.forEach(laundryElement -> laundryElement.setDirty(false));
+    void start() {
+        laundry.asList().forEach(laundryElement -> laundryElement.clean());
     }
+
+    private boolean canFit(LaundryElement nextLaundryElement) {
+        return laundry.weight().add(nextLaundryElement.getWeight()).compareTo(MAX_LAUNDRY_WEIGHT) <= 0;
+    }
+
 }

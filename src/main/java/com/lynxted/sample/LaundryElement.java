@@ -2,49 +2,65 @@ package com.lynxted.sample;
 
 import java.math.BigDecimal;
 
-class LaundryElement {
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
-    private Fabric type;
-    private String color;
-    private BigDecimal weight;
+abstract class LaundryElement {
+
+    private static final Boolean IS_CLEAN = TRUE;
+    private final String color;
+    private final BigDecimal weight;
     private Boolean dirty;
 
-    LaundryElement(Fabric type, String color, BigDecimal weight, Boolean dirty) {
-        this.type = type;
+    private LaundryElement(String color, BigDecimal weight, Boolean dirty) {
         this.color = color;
         this.weight = weight;
         this.dirty = dirty;
     }
 
-    Fabric getType() {
-        return type;
+    static LaundryElement wool(String color, BigDecimal weight) {
+        return new WoolLaundryElement(color, weight, IS_CLEAN);
     }
 
-    void setType(Fabric type) {
-        this.type = type;
+    static LaundryElement cotton(String color, BigDecimal weight) {
+        return new CottonLaundryElement(color, weight, IS_CLEAN);
+    }
+
+    static LaundryElement silk(String color, BigDecimal weight) {
+        return new SilkLaundryElement(color, weight, IS_CLEAN);
     }
 
     String getColor() {
         return color;
     }
 
-    void setColor(String color) {
-        this.color = color;
-    }
-
     BigDecimal getWeight() {
         return weight;
     }
 
-    void setWeight(BigDecimal weight) {
-        this.weight = weight;
+    void clean() {
+        this.dirty = FALSE;
     }
 
-    Boolean getDirty() {
-        return dirty;
+    void dirty() {
+        this.dirty = TRUE;
     }
 
-    void setDirty(Boolean dirty) {
-        this.dirty = dirty;
+    static class WoolLaundryElement extends LaundryElement {
+        private WoolLaundryElement(String color, BigDecimal weight, Boolean dirty) {
+            super(color, weight, dirty);
+        }
+    }
+
+    static class CottonLaundryElement extends LaundryElement {
+        private CottonLaundryElement(String color, BigDecimal weight, Boolean dirty) {
+            super(color, weight, dirty);
+        }
+    }
+
+    static class SilkLaundryElement extends LaundryElement {
+        private SilkLaundryElement(String color, BigDecimal weight, Boolean dirty) {
+            super(color, weight, dirty);
+        }
     }
 }
