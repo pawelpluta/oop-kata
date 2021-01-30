@@ -5,6 +5,10 @@ This one will help you train your Object-Oriented approach.
 Feel free to over-engineer solution. 
 Below you will find general information about the project that you will work on.
 
+## Warm up
+
+You can jump straight to the code, or you might look at the [article explaining the approach](https://pawelpluta.com/the-oop-has-been-explained-wrongly-to-me/).
+
 ## Initial project
 
 Code on `main` branch simulates some washing machine. 
