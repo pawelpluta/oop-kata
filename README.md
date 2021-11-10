@@ -42,3 +42,7 @@ If you need guidance on start, you can follow these steps:
 * move check if the value is in a valid range to Temperature and SpinSpeed classes
 * laundry, that does not fit into Washing Machine should be put back into Basket
 * try to remove Service class or name it properly - naming class with 'Service' suffix promotes adding all, barely connected code into this class instead of splitting responsibilities
+
+## Another languages
+Thanks to the community, this Kata is available also for another languages. Check them out!
+* [Swift](https://github.com/ytyubox/oop-kata-swift) by [@ytyubox](https://github.com/ytyubox/oop-kata-swift)
